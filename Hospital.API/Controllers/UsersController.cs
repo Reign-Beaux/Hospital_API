@@ -1,5 +1,6 @@
 ﻿using Hospital.Application.DTOs.Users.Request;
 using Hospital.Application.Services.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.API.Controllers
@@ -16,10 +17,11 @@ namespace Hospital.API.Controllers
     }
 
 
+    [AllowAnonymous]
     [HttpPost("Generate/Token")]
     public async Task<IActionResult> GenerateToken([FromBody] UserLoginRequest request)
     {
-      var response = await _service.Login(request); //_application.GenerateToken(requestDTO);
+      var response = await _service.Login(request);
       return Ok(response);
     }
   }

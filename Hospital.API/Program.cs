@@ -1,3 +1,4 @@
+using Hospital.API.Extensions;
 using Hospital.Application.Extensions;
 using Hospital.Infraestructure.Extensions;
 
@@ -8,12 +9,12 @@ var cors = "Cors";
 
 builder.Services.AddInjectionApplication();
 builder.Services.AddInjectionInfraestructure();
-//builder.Services.AddAuthentication(configuration);
+builder.Services.AddAuthentication(configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwagger();
 
 builder.Services.AddCors(options =>
 {
@@ -40,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
